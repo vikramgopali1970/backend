@@ -1,0 +1,29 @@
+{
+  "name": "server-mysql",
+  "version": "1.0.0",
+  "description": "NodeJs server with MySQL integration",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vikramgopali1970/node-server-mysql.git"
+  },
+  "keywords": [
+    "node",
+    "mysql"
+  ],
+  "author": "Vikram Gopali",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vikramgopali1970/node-server-mysql/issues"
+  },
+  "homepage": "https://github.com/vikramgopali1970/node-server-mysql#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "morgan": "^1.9.1",
+    "mysql": "^2.16.0"
+  }
+}
