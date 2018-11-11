@@ -24,7 +24,10 @@
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
+    "html-metadata": "git://github.com/wikimedia/html-metadata.git",
     "morgan": "^1.9.1",
-    "mysql": "^2.16.0"
+    "mysql": "^2.16.0",
+    "sentiment": "^5.0.1",
+    "yelp-fusion": "^2.2.1"
   }
 }
