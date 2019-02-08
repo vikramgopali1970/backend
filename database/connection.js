@@ -10,3 +10,5 @@ let getConnection = (cb)=>{
         cb(error,connection);
     });
 };
+
+module.exports  = getConnection;

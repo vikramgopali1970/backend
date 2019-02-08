@@ -4,7 +4,7 @@ module.exports = {
         host     : process.env.DBHOST,
         user     : process.env.DBUSER,
         password : process.env.DBPASS,
-        database : process.env.DBNAME,
+        database : "outsource",//process.env.DBNAME,
         debug    :  false
     }
 
