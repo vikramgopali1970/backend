@@ -1,8 +1,9 @@
 var passport = require('passport');
 require('../passport')(passport);
+require('../routeAuth');
 module.exports = (router,sql,md5,moment,jwt)=>{
 
-    router.post('/login',passport.authenticate('login',{session: true}),(req,res,next)=>{
+    router.post('/login',(req,res,next)=>{
         let data = req.body;
         const uname = data.username;
         const pass = data.password;
@@ -30,8 +31,13 @@ module.exports = (router,sql,md5,moment,jwt)=>{
         res.json({status : "USer_Authenticated"});
     });
 
-    router.get('/dashboard',passport.authenticate('login',{session: true}),(req,res,next)=> {
-        res.json({status : "USer_Authenticated"});
+    router.get('/dashboard',(req,res,next)=> {
+        const sqlQ = `select username,project_title,date_starts from ilance_users u, ilance_projects p where p.user_id = u.user_id`;
+        sql.execute([sqlQ]).then(data=>{
+            res.json({status : data[0]});
+        }).catch(error=>{
+            console.log(error);
+        })
     });
 
     return router;

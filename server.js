@@ -22,7 +22,7 @@ app.use(express.json());
 //Parse incoming request bodies in a middleware before your handlers, available under the req.body property.
 app.use(bodyParser.json({limit:'1mb'}));
 app.use(bodyParser.urlencoded({
-    extended: false
+    extended: true
 }));
 
 app.use(session({secret: 'mySecretKey'}));
@@ -45,6 +45,7 @@ const allowCrossDomain = function(req, res, next) {
 app.use(allowCrossDomain);
 
 passport.serializeUser(function(user, done) {
+    console.log("comng in ser");
     delete user["password"];
     delete user["salt"];
     delete user["secretquestion"];
