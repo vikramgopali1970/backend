@@ -45,7 +45,6 @@ const allowCrossDomain = function(req, res, next) {
 app.use(allowCrossDomain);
 
 passport.serializeUser(function(user, done) {
-    console.log("comng in ser");
     delete user["password"];
     delete user["salt"];
     delete user["secretquestion"];

@@ -1,4 +1,4 @@
-var passport = require('passport');
+const passport = require('passport');
 require('../passport')(passport);
 require('../routeAuth');
 module.exports = (router,sql,md5,moment,jwt)=>{
@@ -20,10 +20,10 @@ module.exports = (router,sql,md5,moment,jwt)=>{
                 const token = jwt.encode(userData,"secret");
                 res.send({'status': true, 'user': userData, 'token': 'JWT ' + token, route:"dashboard"});
             }else{
-                res.json("No Match");
+                res.json({'status': false, 'msg': "User not found.", route:"login"})
             }
         }).catch(error=>{
-            console.log(error);
+            res.json({'status': false, 'msg': "Server timed out. Try again later.", route:"login"});
         });
     });
 
@@ -32,11 +32,12 @@ module.exports = (router,sql,md5,moment,jwt)=>{
     });
 
     router.get('/dashboard',(req,res,next)=> {
-        const sqlQ = `select username,project_title,date_starts from ilance_users u, ilance_projects p where p.user_id = u.user_id`;
+        const sqlQ = `select username,project_title,date_starts,category from ilance_users u, ilance_projects p, ilance_category c where p.user_id = u.user_id and c.cid = p.cid`;
         sql.execute([sqlQ]).then(data=>{
-            res.json({status : data[0]});
+            res.json({status : true, route:"dashboard", data:data[0]});
         }).catch(error=>{
             console.log(error);
+            res.json({'status': false, 'msg': "Server timed out. Try again later.", route:"login"});
         })
     });
 

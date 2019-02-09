@@ -5,12 +5,10 @@ const sql = require('./database/sqlwrapper');
 const md5 = require('md5');
 
 module.exports = function(passport){
-    console.log("qqqqqqq");
     passport.use('login', new JwtStrategy({
             passReqToCallback : true,
         },
         function(req, username, password, done) {
-        console.log("qutwfeuqw",username, password);
             sql.execute([`select * from ilance_users where username="${username}"`]).then(data=>{
                 if(data[0].length > 0){
                     if(md5(md5(data[0][0].password)+data[0][0].salt) === password){
